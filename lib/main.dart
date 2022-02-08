@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_apprication/recomendation.dart';
 import 'package:test_apprication/gambling.dart';
 import 'package:test_apprication/comedy.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'assets/images/one_punch_man.jpeg',
     'assets/images/baki.jpeg',
   ];
+  int activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -65,30 +67,44 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: [
-          Container(
-            height: 300,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage('assets/images/usogui.jpeg'),
-              fit: BoxFit.cover,
-            )),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  '嘘喰い',
-                  style: TextStyle(
-                      fontSize: 50,
-                      foreground: Paint()
-                        ..style = PaintingStyle.stroke
-                        ..color = Colors.deepPurple
-                        ..strokeWidth = 3),
-                )
-              ],
-            ),
-          ),
+          CarouselSlider.builder(
+              itemCount: images.length,
+              itemBuilder: (context, index, realIndex) {
+                final path = images[index];
+                return buildImage(context, path, index);
+              },
+              options: CarouselOptions(
+                  height: 300,
+                  initialPage: 0,
+                  viewportFraction: 1,
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 5))),
+          // Container(
+          //   height: 300,
+          //   width: double.infinity,
+
+          //   // decoration: const BoxDecoration(
+          //   //     image: DecorationImage(
+          //   //   image: AssetImage('assets/images/usogui.jpeg'),
+          //   //   fit: BoxFit.cover,
+          //   // )
+          //   // ),
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: <Widget>[
+          //       Text(
+          //         '嘘喰い',
+          //         style: TextStyle(
+          //             fontSize: 50,
+          //             foreground: Paint()
+          //               ..style = PaintingStyle.stroke
+          //               ..color = Colors.deepPurple
+          //               ..strokeWidth = 3),
+          //       )
+          //     ],
+          //   ),
+          // ),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -243,3 +259,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+Widget buildImage(context, path, index) => Container(
+      width: MediaQuery.of(context).size.width,
+      child: Image.asset(
+        path,
+        fit: BoxFit.cover,
+      ),
+    );
