@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_apprication/recomendation.dart';
+import 'package:test_apprication/gambling.dart';
+import 'package:test_apprication/comedy.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,13 +56,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MANGA APP',
-          style: TextStyle(
-            fontWeight: FontWeight.bold
-          ),
+        title: const Text(
+          'MANGA APP',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -69,75 +70,57 @@ class _MyHomePageState extends State<MyHomePage> {
             width: double.infinity,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/usogui.jpeg'),
-                  fit: BoxFit.cover,
-                )
-            ),
+              image: AssetImage('assets/images/usogui.jpeg'),
+              fit: BoxFit.cover,
+            )),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:<Widget>[
-                Text('嘘喰い',
-
+              children: <Widget>[
+                Text(
+                  '嘘喰い',
                   style: TextStyle(
                       fontSize: 50,
                       foreground: Paint()
                         ..style = PaintingStyle.stroke
                         ..color = Colors.deepPurple
-                        ..strokeWidth = 3
+                        ..strokeWidth = 3),
+                )
+              ],
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Recomendation()));
+            },
+            child: Row(
+              children: [
+                Container(
+                  width: 330,
+                  padding: const EdgeInsets.all(15),
+                  height: 60,
+                  child: const Text(
+                    'Recomendation',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                ),
+                const Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                    size: 28,
                   ),
                 )
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.all(15),
-            height: 60,
-            child: Text('Recomendation',
-              style: TextStyle(
-                fontSize: 25
-              ),
-            )
-          ),
-          Container(
             height: 150,
-            margin: EdgeInsets.symmetric(
-              vertical: 10,
-            ),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              cacheExtent: 0.0,
-              itemCount: images.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: 100,
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 15
-                    ),
-                      child: Column(
-                        children: [
-                          Image.asset(images[index],
-                            height: 110,
-                          ),
-                          Text('sample')
-                        ],
-                      )
-                  );
-                },
-            ),
-          ),
-          Container(
-              padding: EdgeInsets.all(15),
-              height: 60,
-              child: Text('Gambling',
-                style: TextStyle(
-                    fontSize: 25
-                ),
-              )
-          ),
-          Container(
-            height: 150,
-            margin: EdgeInsets.symmetric(
+            margin: const EdgeInsets.symmetric(
               vertical: 10,
             ),
             child: ListView.builder(
@@ -147,33 +130,45 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (context, index) {
                 return Container(
                     width: 100,
-                    margin: EdgeInsets.symmetric(
-                        horizontal: 15
-                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
                       children: [
-                        Image.asset(images[index],
+                        Image.asset(
+                          images[index],
                           height: 110,
                         ),
-                        Text('sample')
+                        const Text('sample')
                       ],
-                    )
-                );
+                    ));
               },
             ),
           ),
-          Container(
-              padding: EdgeInsets.all(15),
-              height: 60,
-              child: Text('Comedy',
-                style: TextStyle(
-                    fontSize: 25
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Gambling()));
+            },
+            child: Row(children: <Widget>[
+              Container(
+                  width: 330,
+                  padding: const EdgeInsets.all(15),
+                  height: 60,
+                  child: const Text(
+                    'Gambling',
+                    style: TextStyle(fontSize: 25),
+                  )),
+              const Align(
+                alignment: Alignment.centerRight,
+                child: Icon(
+                  Icons.arrow_forward,
+                  size: 28,
                 ),
               )
+            ]),
           ),
           Container(
             height: 150,
-            margin: EdgeInsets.symmetric(
+            margin: const EdgeInsets.symmetric(
               vertical: 10,
             ),
             child: ListView.builder(
@@ -183,18 +178,63 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (context, index) {
                 return Container(
                     width: 100,
-                    margin: EdgeInsets.symmetric(
-                        horizontal: 15
-                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
                       children: [
-                        Image.asset(images[index],
+                        Image.asset(
+                          images[index],
                           height: 110,
                         ),
-                        Text('sample')
+                        const Text('sample')
                       ],
-                    )
-                );
+                    ));
+              },
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Comedy()));
+            },
+            child: Row(children: <Widget>[
+              Container(
+                  width: 330,
+                  padding: const EdgeInsets.all(15),
+                  height: 60,
+                  child: const Text(
+                    'Comedy',
+                    style: TextStyle(fontSize: 25),
+                  )),
+              const Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(
+                    Icons.arrow_forward,
+                    size: 28,
+                  ))
+            ]),
+          ),
+          Container(
+            height: 150,
+            margin: const EdgeInsets.symmetric(
+              vertical: 10,
+            ),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              cacheExtent: 0.0,
+              itemCount: images.length,
+              itemBuilder: (context, index) {
+                return Container(
+                    width: 100,
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          images[index],
+                          height: 110,
+                        ),
+                        const Text('sample')
+                      ],
+                    ));
               },
             ),
           )
